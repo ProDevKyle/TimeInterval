@@ -2,18 +2,25 @@ package com.company;
 
 public class Appointment
 {
-    private TimeInterval time;
+    private TimeInterval timeInterval;
+
+    public Appointment(int start, int end)
+    {
+        this.timeInterval = new TimeInterval(start, end);
+    }
 
     public TimeInterval getTime()
     {
-        this.time = time;
+        return this.timeInterval;
     }
 
     public boolean conflictsWith(Appointment other)
     {
-        if(getTime() == other)
-            return true;
-        else
-            return false;
+        return this.getTime().overlapsWith(other.getTime());
+    }
+
+    public String toString()
+    {
+        return this.timeInterval.toString();
     }
 }
